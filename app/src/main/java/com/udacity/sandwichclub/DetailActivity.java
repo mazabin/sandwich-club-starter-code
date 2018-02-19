@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+
+import java.util.Arrays;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -34,16 +37,14 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
-        String json = sandwiches[position];
-        Sandwich sandwich = JsonUtils.parseSandwichJson(json);
+        Sandwich sandwich = JsonUtils.parseSandwichJson(getResources().getStringArray(R.array.sandwich_details)[position]);
         if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -56,7 +57,21 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich sandwich) {
+        TextView alsoKnownAsTv = findViewById(R.id.also_known_tv);
+        String alsoKnownAsString = "";
+        for (int i = 0; i < sandwich.getAlsoKnownAs().size(); i++){
+            alsoKnownAsString += sandwich.getAlsoKnownAs().get(i) + ", ";
+        }
+        alsoKnownAsTv.setText(alsoKnownAsString);
 
+        TextView ingredients = findViewById(R.id.ingredients_tv);
+        ingredients.setText(sandwich.getIngredients().toString());
+        TextView description = findViewById(R.id.description_tv);
+        description.setText(sandwich.getDescription());
+        TextView origin = findViewById(R.id.origin_tv);
+        origin.setText(sandwich.getPlaceOfOrigin());
+
+        //TODO correct displaying arrays
     }
 }
