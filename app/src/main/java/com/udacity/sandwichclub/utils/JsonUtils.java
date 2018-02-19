@@ -5,7 +5,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class JsonUtils {
 
@@ -18,11 +20,18 @@ public class JsonUtils {
             JSONObject name = jsonObject.getJSONObject("name");
             sandwich.setMainName(name.getString("mainName"));
             JSONArray alsoKnownAs = name.getJSONArray("alsoKnownAs");
-            sandwich.setAlsoKnownAs(Arrays.asList(alsoKnownAs.toString()));
+            List<String> alsoKnownAsList = new ArrayList<>();
+            for (int i = 0; i < alsoKnownAs.length(); i++)
+                alsoKnownAsList.add(alsoKnownAs.getString(i));
+            sandwich.setAlsoKnownAs(alsoKnownAsList);
             sandwich.setPlaceOfOrigin(jsonObject.getString("placeOfOrigin"));
             sandwich.setDescription(jsonObject.getString("description"));
             sandwich.setImage(jsonObject.getString("image"));
-            sandwich.setIngredients(Arrays.asList(jsonObject.getJSONArray("ingredients").toString()));
+            JSONArray ingredients = jsonObject.getJSONArray("ingredients");
+            List<String> ingredientsList = new ArrayList<>();
+            for(int i=0; i<ingredients.length(); i++)
+                ingredientsList.add(ingredients.getString(i));
+            sandwich.setIngredients(ingredientsList);
         } catch (JSONException jsonException) {
             jsonException.printStackTrace();
         }

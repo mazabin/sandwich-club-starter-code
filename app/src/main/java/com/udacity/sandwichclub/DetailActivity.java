@@ -12,6 +12,7 @@ import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -59,19 +60,15 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
         TextView alsoKnownAsTv = findViewById(R.id.also_known_tv);
-        String alsoKnownAsString = "";
-        for (int i = 0; i < sandwich.getAlsoKnownAs().size(); i++){
-            alsoKnownAsString += sandwich.getAlsoKnownAs().get(i) + ", ";
-        }
-        alsoKnownAsTv.setText(alsoKnownAsString);
-
-        TextView ingredients = findViewById(R.id.ingredients_tv);
-        ingredients.setText(sandwich.getIngredients().toString());
         TextView description = findViewById(R.id.description_tv);
-        description.setText(sandwich.getDescription());
+        TextView ingredients = findViewById(R.id.ingredients_tv);
         TextView origin = findViewById(R.id.origin_tv);
+
+        alsoKnownAsTv.setText(sandwich.getAlsoKnownAs().toString().substring(1,sandwich.getAlsoKnownAs().toString().length()-1));
+        description.setText(sandwich.getDescription());
+        ingredients.setText(sandwich.getIngredients().toString().substring(1,sandwich.getIngredients().toString().length()-1));
         origin.setText(sandwich.getPlaceOfOrigin());
 
-        //TODO correct displaying arrays
+
     }
 }
