@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -23,15 +22,6 @@
             />
 
         <android.support.constraint.Guideline
-            android:id="@+id/guideline_middle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <android.support.constraint.Guideline
             android:id="@+id/guideline_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,70 +38,77 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/also_known_label_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
             android:text="@string/detail_also_known_as_label"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/also_known_tv"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/image_iv"/>
 
         <TextView
             android:id="@+id/also_known_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5pt"
-            android:paddingBottom="3pt"
-            app:layout_constraintLeft_toRightOf="@id/guideline_middle"
-            app:layout_constraintTop_toBottomOf="@id/image_iv"
+            android:paddingTop="1pt"
             app:layout_constraintRight_toLeftOf="@id/guideline_right"
-            />
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/also_known_label_tv"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/description_label_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
             android:text="@string/detail_description_label"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/description_tv"/>
+            app:layout_constraintRight_toLeftOf="@id/guideline_right"
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/also_known_tv"/>
 
         <TextView
             android:id="@+id/description_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1pt"
-            android:paddingBottom="3pt"
-            app:layout_constraintLeft_toRightOf="@id/guideline_middle"
-            app:layout_constraintTop_toBottomOf="@id/also_known_tv"
+            android:paddingTop="1pt"
             app:layout_constraintRight_toLeftOf="@id/guideline_right"
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/description_label_tv"
             />
 
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/ingredients_label_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/detail_ingredients_label"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/ingredients_tv"/>
+            android:paddingTop="4pt"
+            app:layout_constraintRight_toLeftOf="@id/guideline_right"
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv"/>
 
         <TextView
             android:id="@+id/ingredients_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1pt"
-            android:paddingBottom="3pt"
-            app:layout_constraintLeft_toRightOf="@id/guideline_middle"
-            app:layout_constraintTop_toBottomOf="@id/description_tv"
+            android:paddingTop="1pt"
             app:layout_constraintRight_toLeftOf="@id/guideline_right"
-            />
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients_label_tv"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/origin_label_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/detail_place_of_origin_label"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/origin_tv"/>
+            android:paddingTop="4pt"
+            app:layout_constraintRight_toLeftOf="@id/guideline_right"
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients_tv"/>
+
 
         <TextView
             android:id="@+id/origin_tv"
@@ -119,9 +116,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1pt"
             android:paddingBottom="3pt"
-            app:layout_constraintLeft_toRightOf="@id/guideline_middle"
-            app:layout_constraintTop_toBottomOf="@id/ingredients_tv"
+            android:paddingTop="1pt"
             app:layout_constraintRight_toLeftOf="@id/guideline_right"
-            />
+            app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/origin_label_tv"/>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

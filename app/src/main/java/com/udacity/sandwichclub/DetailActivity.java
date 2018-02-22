@@ -11,18 +11,25 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
-import java.util.Arrays;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
+    @BindView(R.id.also_known_tv) TextView alsoKnownAsTv;
+    @BindView(R.id.description_tv) TextView descriptionTv;
+    @BindView(R.id.ingredients_tv) TextView ingredientsTv;
+    @BindView(R.id.origin_tv) TextView originTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        ButterKnife.bind(this);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
 
@@ -31,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
             closeOnError();
         }
 
+        assert intent != null;
         int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
         if (position == DEFAULT_POSITION) {
             // EXTRA_POSITION not found in intent
@@ -58,17 +66,14 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Fills TextViews of DetailActivity with values from corresponding fields in Sandwich.
+     * @param sandwich An instance of Sandwich
+     */
     private void populateUI(Sandwich sandwich) {
-        TextView alsoKnownAsTv = findViewById(R.id.also_known_tv);
-        TextView description = findViewById(R.id.description_tv);
-        TextView ingredients = findViewById(R.id.ingredients_tv);
-        TextView origin = findViewById(R.id.origin_tv);
-
         alsoKnownAsTv.setText(sandwich.getAlsoKnownAs().toString().substring(1,sandwich.getAlsoKnownAs().toString().length()-1));
-        description.setText(sandwich.getDescription());
-        ingredients.setText(sandwich.getIngredients().toString().substring(1,sandwich.getIngredients().toString().length()-1));
-        origin.setText(sandwich.getPlaceOfOrigin());
-
-
+        descriptionTv.setText(sandwich.getDescription());
+        ingredientsTv.setText(sandwich.getIngredients().toString().substring(1,sandwich.getIngredients().toString().length()-1));
+        originTv.setText(sandwich.getPlaceOfOrigin());
     }
 }
